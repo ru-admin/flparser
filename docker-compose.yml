@@ -8,6 +8,8 @@ services:
       # context: .
       # dockerfile: Dockerfile
     container_name: flparser
+    # Если прокси (TG_PROXY, AI_PROXY) слушает 127.0.0.1 на хосте, раскомментируйте:
+    # network_mode: host
     restart: unless-stopped
     env_file:
       - .env
