@@ -1,0 +1,52 @@
+# docker-compose.yml для FL.ru Parser
+# Образ публикуется в GHCR: ghcr.io/ru-admin/flparser
+
+services:
+  flparser:
+    image: ghcr.io/ru-admin/flparser:latest
+    # build:
+      # context: .
+      # dockerfile: Dockerfile
+    container_name: flparser
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./flparser_data:/app/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    # Переменные окружения можно переопределить здесь или в .env
+    environment:
+      - FLRU_LLM_API_KEY=${FLRU_LLM_API_KEY:?}
+      - FLRU_LLM_BASE_URL=${FLRU_LLM_BASE_URL:?}
+      - FLRU_AI_MODEL=${FLRU_AI_MODEL:?}
+      - FL_BOT_TOKEN=${FL_BOT_TOKEN:?}
+      - FL_CHAT_ID=${FL_CHAT_ID:?}
+      - CRON_PARSE=${CRON_PARSE:?}
+      - CRON_STATS=${CRON_STATS:?}
+      - TG_PROXY=${TG_PROXY}
+      - FL_PROXY=${FL_PROXY}
+      - AI_PROXY=${AI_PROXY}
+      - FLRU_DEBUG2TG=${FLRU_DEBUG2TG:-false}
+      - FL_RU_RSS_URL=${FL_RU_RSS_URL:-https://www.fl.ru/rss/all.xml}
+      - MAX_TASKS_PER_RUN=${MAX_TASKS_PER_RUN:-60}
+      - REQUEST_TIMEOUT=${REQUEST_TIMEOUT:-30}
+      - AI_TIMEOUT=${AI_TIMEOUT:-60}
+      - URL_RETRY=${URL_RETRY:-3}
+      - URL_DELAY=${URL_DELAY:-2}
+      - PRIORITY_HIGH_THRESHOLD=${PRIORITY_HIGH_THRESHOLD:-80}
+      - PRIORITY_MEDIUM_THRESHOLD=${PRIORITY_MEDIUM_THRESHOLD:-60}
+      - HERMES_OPENROUTER_APP_REFERER=${HERMES_OPENROUTER_APP_REFERER:-https://github.com/ru-admin/flparser}
+      - HERMES_OPENROUTER_APP_TITLE=${HERMES_OPENROUTER_APP_TITLE:-FL.ru Parser}
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import sys; sys.exit(0)"]
+      interval: 60s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    # Ротация логов Docker (stdout контейнера)
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

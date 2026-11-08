@@ -1,0 +1,11 @@
+.git
+.github
+.env
+.gitattributes
+AGENTS.md
+flparser_data
+data
+logs
+*.log
+__pycache__
+*.pyc
