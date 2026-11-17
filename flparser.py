@@ -143,7 +143,7 @@ KEYWORDS = [
     "reverse proxy", "ssl", "tls", "lets encrypt", "certbot",
     "self-hosted", "selfhosted", "деплой", "deploy", "deployment",
     "скрипт", "парсинг", "api", "rest", "webhook",
-    "backup", "резервное копирование",
+    "backup", "резервное копирование", "резервная копия",
     "настройка", "установка", "конфигурация",
     "администрирование", "maintenance", "обновление",
     "перенос", "migration", "migrate",
@@ -166,12 +166,12 @@ STOP_WORDS = [
     "видео", "анимация", "моушн",
     "фото", "обработка фото",
     "vr", "ar", "3d",
-    "мобильное приложение", "ios", "android", "flutter", "react native",
+    "мобильное приложение", "ios", "flutter", "react native",
     "e-commerce", "магазин", "товары", "каталог",
     "crm", "erp", "hr",
     "seo-оптимизация", "smm-продвижение", "таргет",
     "фейсбук", "facebook", "instagram", "тикток", "tiktok",
-    "sound design", "аудио", "подкаст",
+    "sound design", "подкаст",
     "копирайтер", "редактор", "журналист",
     "аналитик данных", "bi аналитик",
     "учебный", "диплом", "курсовая", "реферат",
@@ -212,7 +212,7 @@ STRONG_KEYWORDS = {
     # Облака
     "yandex cloud", "selectel",
     # Эксплуатация и миграции
-    "backup", "резервное копирование", "миграция", "migration", "migrate",
+    "backup", "резервное копирование", "резервная копия", "миграция", "migration", "migrate",
     "деплой", "deploy", "deployment", "self-hosted", "selfhosted",
     # Прикладные направления из профиля
     "1с", "1с-битрикс", "bitrix", "ии-агент", "ai-agent", "ai-агент",
